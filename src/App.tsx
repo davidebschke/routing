@@ -1,26 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {HashRouter, Link, Routes, Route, useNavigate} from "react-router-dom";
+import Details from './Details';
+import Curry from './Curry';
 
 function App() {
+    const [inputValue,setInputValue]=useState<string>("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+
+          <HashRouter>
+
+          <Routes>
+            <Route path="/" element={<Curry setInputValue={setInputValue} inputValue={inputValue}/>}/>
+            <Route path="/:id" element={<Details/>}/>  // Details = Dateiname der Aufgerufen wird  // :id ist eine variable in Details
+          </Routes>
+        </HashRouter>
+
+      </div>
   );
 }
 
 export default App;
+
+
